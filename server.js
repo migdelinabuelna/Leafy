@@ -13,7 +13,7 @@ const app = express();
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger("dev"));
-app.use(express.json());
+app.use(express.json()); // makes http requests available on req.body
 
 
 // Configure the auth middleware
@@ -23,7 +23,7 @@ app.use(require("./config/auth"));
 // api routes must be before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
 
-// "catch all" route
+// "catch all" route // any requests sent to our express server(localhost8000) is going to send out index.html file
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
