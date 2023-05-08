@@ -2,16 +2,21 @@ import React from 'react'
 //code given by semantic for our signup page and we had to adjust it our way
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { useState } from 'react';
+import userService from '../../utils/userService';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 
+import { useNavigate } from "react-router-dom"; //htis is a hook that allows you to navigate to a different route
 
-export default function Signup() {
+export default function Signup({handleSignUpOrLogin}) {
+
+const navigate = useNavigate(); //this is a function that affects the route to change to 
+
 //set up our state
-
 const [state, setState] = useState({
     username: '',
     email: '',
     password: '',
-    passwordConf: '',
+    confirmpassword: '',
     bio: '',
     faveplants: ''
 })
@@ -39,7 +44,38 @@ function handleFileInput(e) {
     setProfileImageFile(e.target.files[0]);
 }
 
-function handleSubmit() {}
+async function handleSubmit(e) {
+    e.preventDefault();
+
+    //we have to turn our data into formData if we are sending over a photo or file
+    const formData = new FormData();
+
+    formData.append('photo', profileImageFile); 
+    // formData.append('username', state.username);
+    // formData.append('email', state.email);
+    // formData.append('password', state.password);
+    // formData.append('confirmpassword', state.confirmpassword);
+    // formData.append('bio', state.bio);
+    // FormData.append('favplants', state.faveplants);
+
+//A shorter way to do the above is to use a for in loop
+//it allows us to loop over the state object and apply the field names and values
+    for (let fieldName in state) {
+        formData.append(fieldName, state[fieldName]) 
+    }
+
+// console.log(formData.forEach((item) => console.log(item))); //to check formData in console
+
+    try { 
+        await userService.signup(formData);
+        handleSignUpOrLogin();
+        navigate('/'); //this will navigate us to our home page
+} catch(err) {
+    console.log(err.message, 'there was an error signing up')
+    setError('Check your terminal for any errors')
+}
+    
+}
 
     return (
   <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -73,10 +109,10 @@ function handleSubmit() {}
               required
             />
             <Form.Input
-              name="passwordConf"
+              name="confirmpassword"
               type="password"
               placeholder="Confirm Password"
-              value={state.passwordConf}
+              value={state.confirmpassword}
               onChange={handleChange}
               required
             />

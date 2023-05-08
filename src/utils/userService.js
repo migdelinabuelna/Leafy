@@ -1,13 +1,16 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/users/';
+const BASE_URL = '/api/users/'; //sign up request comes in through here
+//we are sending over a file through our sign up, therefore we need to send over a multipart/form-data request
+//the browser will automatically detect that for us and apply the headers
 
 function signup(user) {
   return fetch(BASE_URL + 'signup', {
     method: 'POST',
-    headers: new Headers({'Content-Type': 'application/json'}),  // If you are sending a file/photo over
+    // headers: new Headers({'Content-Type': 'application/json'}),  // If you are sending a file/photo over
     // what do datatype do you need to change this too?
-    body: JSON.stringify(user)
+    // body: JSON.stringify(user)
+    body: user // < - no need stringify the user data because we're not sending over json we are sending over form/data
   })
   .then(res => {
     if (res.ok) return res.json();
@@ -15,7 +18,7 @@ function signup(user) {
     throw new Error('Email already taken!');
   })
   // Parameter destructuring!
-  .then(({token}) => tokenService.setToken(token));
+  .then(({token}) => tokenService.setToken(token)); //this is where we store our token in local storage
   // The above could have been written as
   //.then((token) => token.token);
 }

@@ -7,16 +7,48 @@ module.exports = {
   login
 };
 
+const S3 = require('aws-sdk/clients/s3');
+//initialize the constructor function
+const s3 = new S3();
+
+// npm install uuid 
+//we'll use the module uuid to generate random names for our aws file
+const { v4: uuidv4 } = require('uuid')
+
+const BUCKET_NAME = process.env.BUCKET //from env file
+
 async function signup(req, res) {
-  const user = new User(req.body);
-  try {
-    await user.save();
-    const token = createJWT(user);
-    res.json({ token });
-  } catch (err) {
-    // Probably a duplicate email
-    res.status(400).json(err);
-  }
+  console.log(req.body, req.file)
+  if(!req.file) return res.status(400).json({error: "Please Submit a Photo!"});
+
+  //create a path in which we want to store file in our s3 bucket
+  const filePath = `leafy/${uuidv4()}-${req.file.originalname}`;
+  const params = {Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer}; //req.file.buffer is the image uploaded from the client 
+  s3.upload(params, async function(err, data){
+    if(err){
+      console.log(err, 'AWS ERROR');
+      res.status(400).json({error: 'Check Your Terminal'})
+    }
+ 
+ 
+const user = new User({...req.body, photoUrl: data.Location}); //data.Location is the url of our image on AWS
+try {
+  await user.save();
+  const token = createJWT(user);
+  res.json({token});
+} catch(err) {
+  res.status(400).json({error: err})
+}
+})
+  // const user = new User(req.body);
+  // try {
+  //   await user.save();
+  //   const token = createJWT(user);
+  //   res.json({ token });
+  // } catch (err) {
+  //   // Probably a duplicate email
+  //   res.status(400).json(err);
+  // }
 }
 
 async function login(req, res) {
