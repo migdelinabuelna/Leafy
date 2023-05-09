@@ -54,14 +54,14 @@ try {
 async function login(req, res) {
  
   try {
-    const user = await User.findOne({email: req.body.email});
+    const user = await User.findOne({email: req.body.email}); //go find the user with this email 
    
-    if (!user) return res.status(401).json({err: 'bad credentials'});
-    user.comparePassword(req.body.password, (err, isMatch) => {
+    if (!user) return res.status(401).json({err: 'bad credentials'}); //if we dont find the user with the email this will be the message
+    user.comparePassword(req.body.password, (err, isMatch) => { //if we do find the user we compare passwords to make sure it is correct
       
-      if (isMatch) {
-        const token = createJWT(user);
-        res.json({token});
+      if (isMatch) { //if the password is correct
+        const token = createJWT(user); //we create a jwt token
+        res.json({token});//we send back the token back to the client
       } else {
         return res.status(401).json({err: 'bad credentials'});
       }

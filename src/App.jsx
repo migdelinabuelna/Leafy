@@ -18,7 +18,7 @@ function handleSignUpOrLogin(){
     <Routes>
       <Route path="/" element={<h1>Leafy</h1>} />
       <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
     </Routes>
   );
 }

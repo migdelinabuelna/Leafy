@@ -15,7 +15,7 @@ function signup(user) {
   .then(res => {
     if (res.ok) return res.json();
     // Probably a duplicate email
-    throw new Error('Email already taken!');
+    throw new Error('EMAIL OR USERNAME IS ALREADY TAKEN!');
   })
   // Parameter destructuring!
   .then(({token}) => tokenService.setToken(token)); //this is where we store our token in local storage
@@ -41,7 +41,7 @@ function login(creds) {
     // Valid login if we have a status of 2xx (res.ok)
     if (res.ok) return res.json();
     throw new Error('Bad Credentials!');
-  })
+  }) //after we ger the response form the express server, we get the token that was just created and we set it in local storage
   .then(({token}) => tokenService.setToken(token));
 }
 
