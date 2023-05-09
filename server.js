@@ -22,6 +22,7 @@ app.use(express.json()); // makes http requests available on req.body
 app.use(require("./config/auth"));
 // api routes must be before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
+app.use('/api/posts', require('./routes/api/posts'));
 
 // "catch all" route // any requests sent to our express server(localhost8000) is going to send out index.html file
 app.get('/*', function(req, res) {

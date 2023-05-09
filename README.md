@@ -14,11 +14,9 @@ This is a mern Boilerplate using vite to compile the frontend.
 4. Take a look at the server.js code, there is some es6 things to setup `__dirname`
 
 
-#### Setup 
+#### Technologies used
 
-1. ```npm install```
-2. ```npm run dev```
-3. setup `.env` file 
+
 
 - .env file 
 
@@ -26,7 +24,6 @@ This is a mern Boilerplate using vite to compile the frontend.
 SECRET=seiRocks!
 ```
 
-##### Starting the App
+##### Improvement plans
 
-- One terminal
-command - ```npm run dev```
+- Messanger

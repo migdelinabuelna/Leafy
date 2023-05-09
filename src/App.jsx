@@ -4,7 +4,9 @@ import "./App.css";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import userService from "./utils/userService"; 
+import FeedPage from "./pages/FeedPage/FeedPage";
 import { useState } from 'react'
+
 
 function App() {
 
@@ -16,11 +18,13 @@ function handleSignUpOrLogin(){
 
   return (
     <Routes>
-      <Route path="/" element={<h1>Leafy</h1>} />
+      <Route path="/" element={<FeedPage />} />
       <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      {/* <Route path="/*" element={<Navigate to="/login" />} /> */}
     </Routes>
   );
 }
 
 export default App;
+
