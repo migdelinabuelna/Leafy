@@ -1,7 +1,6 @@
 // we need to use the tokenService to get the toke out of local storage
 import tokenService from "./tokenService"
-
-const BASE_URL = '/api/posts';
+const BASE_URL = '/api/posts/'; /// I need an explanation as to how this connects with server.js and our backend routes
 
 //request to create a POST
 export function create(data){
@@ -20,3 +19,25 @@ export function create(data){
     })
 }
 
+//this function is being called in FeedPage when our useEffect runs when the component loads in order to get all the posts
+export function getAll() {
+    return fetch(BASE_URL, {
+        headers: { //we have to send the headers in every request that we'll be logged in for
+            Authorization: "Bearer " + tokenService.getToken() //tokenService.getToken gets the token out of local storage and send it along on our api request
+            // 'Authorization': 'Brearer ' is the convention for sending in JWTS
+        }
+    })
+    .then(res => res.json()); //this is returning the json object that was given to us by the 
+}
+
+
+//we will need to have a function for the delete as well!
+
+export function deletePost(postId) {
+    return fetch(BASE_URL + postId, {
+        method: 'DELETE', //be sure to defile the route otherwise routes will automatically think it is GET
+        headers: {
+            Authorization: "Bearer " + tokenService.getToken()
+        }
+    }).then(res => res.json())
+}

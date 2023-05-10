@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     password: {type: String, required: true},
     bio: String, 
     faveplants: String,
-    //i might want to come back and add location 
+    //i might want to come back and add location
     photoUrl: String // string from aws!
   }, {
     timestamps: true,

@@ -7,7 +7,8 @@ const { v4: uuidv4 } = require('uuid')
 
 module.exports = {
     create, 
-    index
+    index,
+    delete: deletePost,
 }
 
 
@@ -40,14 +41,22 @@ function create(req, res) {
         }
 
     })
-
-
 }
 
 async function index(req, res) {
-    try {
-       const posts = await Post.find({}).populate('user').exec()
-       res.status(200).json({posts})
+    try { //empyty curly brackets means EVERYING IN Post schema
+       const posts = await Post.find({}).populate('user').exec() //using model Post it will find in our database the user
+       res.status(200).json({posts: posts}) //THIS IS RETURNING ALL THE POSTS JSONFIED (TURNED TO OBJECTS)
     }catch(err) {
+    }
+}
+
+async function deletePost(req, res) {
+    try {
+         await Post.findOneAndDelete({_id: req.params.id})
+
+        res.json({data: 'POST DELETED'})
+    } catch(err){
+        res.status(400).json({err})
     }
 }

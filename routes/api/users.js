@@ -12,6 +12,9 @@ const upload = multer();
 router.post("/signup", upload.single('photo'), usersCtrl.signup);
 router.post("/login", usersCtrl.login);
 
+// this is the params for the api request coming from the react side
+router.get('/:username', usersCtrl.login);
+
 /*---------- Protected Routes ----------*/
 
 module.exports = router;

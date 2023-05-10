@@ -19,7 +19,7 @@ app.use(express.json()); // makes http requests available on req.body
 // Configure the auth middleware
 // This decodes the jwt token, and assigns
 // the user information to req.user
-app.use(require("./config/auth"));
+app.use(require("./config/auth")); //ALL OF THE ROUTES HAVE TO GO TROUGH THIS AND THEN DECODE THE TOKEN BEFORE THEY CONTINUE WITH THE ROUTE
 // api routes must be before the "catch all" route
 app.use("/api/users", require("./routes/api/users"));
 app.use('/api/posts', require('./routes/api/posts'));
