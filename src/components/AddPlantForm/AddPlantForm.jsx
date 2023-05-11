@@ -34,7 +34,10 @@ export default function AddPlantForm({handleAddPost}){
         formData.append('swapstatus', swapStatus)
  //then we make an api call
         handleAddPost(formData); //passed down in params from feed component where we are storing the state
-       
+
+        ///this is resetting our form after we submit it :)
+        e.target.reset() //this is a built in event handler
+
     }
 
 

@@ -45,7 +45,7 @@ function create(req, res) {
 
 async function index(req, res) {
     try { //empyty curly brackets means EVERYING IN Post schema
-       const posts = await Post.find({}).populate('user').exec() //using model Post it will find in our database the user
+       const posts = await Post.find({}).sort({createdAt: -1}).populate('user').exec() //using model Post it will find in our database the user
        res.status(200).json({posts: posts}) //THIS IS RETURNING ALL THE POSTS JSONFIED (TURNED TO OBJECTS)
     }catch(err) {
     }

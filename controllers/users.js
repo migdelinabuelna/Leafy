@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Post = require('../models/post')
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 
@@ -28,7 +29,7 @@ async function signup(req, res) {
   s3.upload(params, async function(err, data){
     if(err){
       console.log(err, 'AWS ERROR');
-      res.status(400).json({error: 'Check Your Terminal'})
+      res.status(400).json({error: 'USER ALREADY EXISTS'})
     }
  
  

@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
-const likeSchema = mongoose.Schema({
-    username: String,
-    userId: { type: mongoose.Schema.Types.ObjectId }
-})
+// const likeSchema = mongoose.Schema({
+//     username: String,
+//     userId: { type: mongoose.Schema.Types.ObjectId }
+// })
 
 const commentSchema = mongoose.Schema( {
     username: String,
     userId: { type: mongoose.Schema.Types.ObjectId}, //idk about this. double check
     comment: {type: String},
     created: {type: Date, default: Date.now(), select: false}
-})
+}, {timestamps: true})
 
 
 const postSchema = new mongoose.Schema({
@@ -19,8 +19,8 @@ const postSchema = new mongoose.Schema({
     caption: String, 
     // swapstatus: { type: Boolean, default: false }, // we will create a button for the swap (IF WE HAVE TWO)
     swapstatus: { type: String, enum: ["YES", "NO", "MAYBE"]},
-    likes: [likeSchema],
+    // likes: [likeSchema],
     comments: [commentSchema]
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Post', postSchema);
