@@ -34,7 +34,7 @@ export function getAll() {
 //we will need to have a function for the delete as well!
 
 export function deletePost(postId) {
-    return fetch(BASE_URL + postId, {
+    return fetch(BASE_URL + postId, { //technically /api/posts/postId
         method: 'DELETE', //be sure to defile the route otherwise routes will automatically think it is GET
         headers: {
             Authorization: "Bearer " + tokenService.getToken()

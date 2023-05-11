@@ -4,7 +4,8 @@ const SECRET = process.env.SECRET;
 
 module.exports = {
   signup,
-  login
+  login, 
+  profile: profilePage
 };
 
 const S3 = require('aws-sdk/clients/s3');
@@ -62,6 +63,30 @@ async function login(req, res) {
     return res.status(401).json(err);
   }
 }
+
+///this is the function that we want to make an api request to 
+async function profilePage( req, res) {
+  try {
+    //we are using the user model to find the user by the usename
+    const user = await User.findOne({username: req.params.username})
+    //if we find the user
+    if(!user) return res.status(404).json({error: "user not found"})
+
+    //then we use the post model to find all the posts that belong to that user(from req.params)
+    //finding all the posts by a user, and populating the user property(user property found in POSTS MODEL)
+    const posts = await Post.find({user: user._id}).populate("user").exec();
+    //remeber that when getting the data tha userSchema.set in model will delete hashed password 
+    console.log(posts)
+    //then we are sending back the posts of the user and the user
+    res.status(200).json({posts: posts, user: user})
+  } catch (err) {
+    console.log(err)
+    res.status(400).json({err})
+  }
+}
+
+
+
 
 /*----- Helper Functions -----*/
 

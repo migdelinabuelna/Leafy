@@ -4,7 +4,7 @@ import { Card } from "semantic-ui-react";
 
 export default function PlantPostDisplay({posts, deletePost}) {
     return (
-        <Card.Group itemsPerRow={1} stackable>
+        <Card.Group itemsPerRow={3} stackable>
             {posts.map((post) => {
                 return (
                     <PlantPostCard post={post} key={post._id} deletePost={deletePost}/>

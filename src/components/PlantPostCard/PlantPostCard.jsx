@@ -26,7 +26,7 @@ export default function PlantPostCard({ post, deletePost }){
           <Card.Description>{post.caption}</Card.Description>
         </Card.Content>
         <Card.Content>
-            <Card.Description>WILLING TO TRADE? {post.swapstatus}</Card.Description>
+            <Card.Description>TRADE? {post.swapstatus}</Card.Description>
         </Card.Content>
         <Card.Content extra textAlign={"right"}>
             <Icon name={"delete"} size="small" onClick={() => {deletePost(post._id)}}
@@ -35,5 +35,3 @@ export default function PlantPostCard({ post, deletePost }){
         </Card>
     )
 }
-
-// functiom that has an api call that has the post IdleDeadline. we start by adding

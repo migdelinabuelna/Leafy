@@ -12,7 +12,7 @@ import { Grid } from "semantic-ui-react"
 //this will import all the functions from postApi, and attach to an object call postApi
 import * as postApi from '../../utils/postApi';
 
-export default function FeedPage(){
+export default function FeedPage({handleLogout}){
 
     const [posts, setPosts] = useState([]); //array of objects (posts)
 
@@ -60,23 +60,21 @@ async function deletePost(postId) {
 }
 }
 
-
-
     return (
         
         <Grid centered>
             <Grid.Row>
                 <Grid.Column> 
-                    <PageHeader />
+                    <PageHeader handleLogout={handleLogout}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid.Column style={{ maxWidth: 800 }}>
                     <AddPlantForm handleAddPost={handleAddPost}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column style={{ maxWidth: 450 }}>
+                <Grid.Column style={{ maxWidth: 800 }}>
                     <PlantPostDisplay posts={posts} deletePost={deletePost}/>
                 </Grid.Column>
             </Grid.Row>
