@@ -1,5 +1,13 @@
-export default function Comments() {
+// import AddCommentForm from "../AddCommentForm/AddCommentForm"
+
+export default function CommentSection({commentSectionPopUp}) {
     return (
-         <div> <h5>COMMENT SECTION</h5> </div>
+        <>
+        {/* <AddCommentForm /> */}
+         <div > 
+         <h5>COMMENT SECTION - all of our comments will display here</h5> 
+         <button onClick={commentSectionPopUp}> RETURN </button>
+         </div>
+         </>
     )
 }

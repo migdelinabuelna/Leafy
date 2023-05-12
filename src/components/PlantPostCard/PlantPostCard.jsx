@@ -1,16 +1,23 @@
 //this is each individual plant post
-import { Card, Icon, Image } from "semantic-ui-react"
-// import Comments from "../CommentSection/CommentSection"
+import { Card, CardContent, Icon, Image } from "semantic-ui-react"
+import CommentSection from "../CommentSection/CommentSection"
+import { Link } from "react-router-dom"
+import { useState } from "react"
+import AddCommentForm from "../AddCommentForm/AddCommentForm"
+
 
 export default function PlantPostCard({ post, deletePost }){
+ 
+    const [commentDisplay, setCommentDisplay] = useState (false)//the boolean goes in here without the strings cause otherwise it is just a string
+
+    function commentSectionPopUp(){
+        setCommentDisplay(!commentDisplay) //! means we want the oppostite 
+    }
 
 
-
-
-    
-    return (
+    return ( 
+    <>
         <Card raised>
-
           <Card.Content textAlign="center">
             <Card.Header>
                 <Image
@@ -23,20 +30,27 @@ export default function PlantPostCard({ post, deletePost }){
                     //   
                   }
                 />
+                <Link to={`/${post.user.username}`}>
                 {post.user.username}
+                </Link>
             </Card.Header>
           </Card.Content>
           <Card.Content extra textAlign={"right"}>
-            <Icon name={"delete"} size="extra small" onClick={() => {deletePost(post._id)}}
+            <Icon name={"delete"} size="tiny" onClick={() => {deletePost(post._id)}}
              />
         </Card.Content>
-        <Image src={`${post?.photoUrl}`} wrapped ui={false} /> 
+        <Image src={`${post?.photoUrl}`} wrapped ui={false} onClick={commentSectionPopUp}/> 
         <Card.Content>
           <Card.Description>{post.caption}</Card.Description>
         </Card.Content>
         <Card.Content>
-            <Card.Description>TRADE? {post.swapstatus}</Card.Description>
+            <Card.Description> SWAPS? {post.swapstatus}</Card.Description>
         </Card.Content>
+        <CardContent><AddCommentForm /></CardContent>
         </Card>
+        {commentDisplay?
+        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'tan', top:0, left:0}}> <CommentSection commentSectionPopUp={commentSectionPopUp}  />
+         </div>:null}
+        </>
     )
 }
