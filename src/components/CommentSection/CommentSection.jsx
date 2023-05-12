@@ -1,12 +1,11 @@
-// import AddCommentForm from "../AddCommentForm/AddCommentForm"
+import { Button } from "semantic-ui-react"
 
 export default function CommentSection({commentSectionPopUp}) {
     return (
         <>
-        {/* <AddCommentForm /> */}
          <div > 
          <h5>COMMENT SECTION - all of our comments will display here</h5> 
-         <button onClick={commentSectionPopUp}> RETURN </button>
+         <Button onClick={commentSectionPopUp}> RETURN </Button>
          </div>
          </>
     )

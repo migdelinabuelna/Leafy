@@ -10,6 +10,8 @@ require("./config/database");
 
 const app = express();
 
+app.set('view engine', 'ejs');//for deployment
+
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger("dev"));
@@ -24,15 +26,14 @@ app.use(require("./config/auth")); //ALL OF THE ROUTES HAVE TO GO TROUGH THIS AN
 app.use("/api/users", require("./routes/api/users"));
 app.use('/api/posts', require('./routes/api/posts'));
 
-// "catch all" route // any requests sent to our express server(localhost8000) is going to send out index.html file
+const manifest = require('./dist/manifest.json');
+console.log(manifest)
+app.use(express.static(path.join(__dirname, "dist")));
+
+// "catch all" route
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.render(path.join(__dirname, 'dist', 'index.ejs'), {manifest});
 });
-
-
-const port = process.env.PORT || 3001;
-
-
 
 
 const { PORT = 8000 } = process.env;

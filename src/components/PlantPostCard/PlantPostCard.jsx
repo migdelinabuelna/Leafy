@@ -16,7 +16,7 @@ export default function PlantPostCard({ post, deletePost }){
 
 
     return ( 
-    <>
+         <>
         <Card raised>
           <Card.Content textAlign="center">
             <Card.Header>
@@ -39,17 +39,18 @@ export default function PlantPostCard({ post, deletePost }){
             <Icon name={"delete"} size="tiny" onClick={() => {deletePost(post._id)}}
              />
         </Card.Content>
-        <Image src={`${post?.photoUrl}`} wrapped ui={false} onClick={commentSectionPopUp}/> 
+        <Image src={`${post?.photoUrl}`} wrapped ui={false} /> 
         <Card.Content>
           <Card.Description>{post.caption}</Card.Description>
         </Card.Content>
         <Card.Content>
             <Card.Description> SWAPS? {post.swapstatus}</Card.Description>
         </Card.Content>
+        <Card.Content onClick={commentSectionPopUp}><Card.Description>COMMENT SECTION</Card.Description></Card.Content>
         <CardContent><AddCommentForm /></CardContent>
         </Card>
         {commentDisplay?
-        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'tan', top:0, left:0}}> <CommentSection commentSectionPopUp={commentSectionPopUp}  />
+        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'#556b2f', top:0, left:0}}> <CommentSection commentSectionPopUp={commentSectionPopUp}  />
          </div>:null}
         </>
     )

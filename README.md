@@ -15,6 +15,7 @@ This is a mern Boilerplate using vite to compile the frontend.
 
 
 #### Technologies used
+- RENDER
 
 
 
