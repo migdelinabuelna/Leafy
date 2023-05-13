@@ -7,7 +7,7 @@ export function create(data){
     console.log(data);
     return fetch(BASE_URL, {
         method: "POST",
-        body: data, //remember you dot not need to jaansofi since we are sending a multipart/fordata request
+        body: data, //remember you dot not need to jaansofi since we are sending a multipart/formdata request
         headers: { //sending awt auth heder. (AFTER WE LOG IN> IN ALL OF OF OUR REQUESTS WE HAVE TO SEND THIS ALONG)
             Authorization: "Bearer " + tokenService.getToken()
             //so the server knows who the request is coming from when the client is trying to make a POST 
@@ -40,4 +40,17 @@ export function deletePost(postId) {
             Authorization: "Bearer " + tokenService.getToken()
         }
     }).then(res => res.json())
+}
+
+export function addComment(postId, comment) {
+    console.log(comment,'checking api post add commment function')
+    return fetch(`${BASE_URL}${postId}/comments`, {
+        method: 'POST',
+        body: JSON.stringify({comment}), //we need to jsonfy since we are NOOOOOT sending a multipart/formdata
+        headers: {
+            Authorization: "Bearer " + tokenService.getToken(),
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json());
 }

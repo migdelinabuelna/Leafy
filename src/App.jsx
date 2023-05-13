@@ -23,15 +23,31 @@ function handleLogout() {
   setUser(null);
 }
 
+if (user) {
+
   return (
     <Routes>
-      <Route path="/" element={<FeedPage handleLogout={handleLogout}/>} />
+      <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout}/>} />
       <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/:username" element={<ProfilePage />} />
     </Routes>
   );
 }
+
+return (
+  <Routes>
+      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      {/* <Route path="/*" element={<Navigate to="/login" />} /> */}
+  </Routes>
+);
+
+
+
+}
+
+
 
 export default App;
 

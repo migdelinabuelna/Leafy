@@ -6,7 +6,7 @@ import { useState } from "react"
 import AddCommentForm from "../AddCommentForm/AddCommentForm"
 
 
-export default function PlantPostCard({ post, deletePost }){
+export default function PlantPostCard({ post, deletePost, handleAddComment }){
  
     const [commentDisplay, setCommentDisplay] = useState (false)//the boolean goes in here without the strings cause otherwise it is just a string
 
@@ -47,10 +47,10 @@ export default function PlantPostCard({ post, deletePost }){
             <Card.Description> SWAPS? {post.swapstatus}</Card.Description>
         </Card.Content>
         <Card.Content onClick={commentSectionPopUp}><Card.Description>COMMENT SECTION</Card.Description></Card.Content>
-        <CardContent><AddCommentForm /></CardContent>
+        <CardContent><AddCommentForm post={post} handleAddComment={handleAddComment}/></CardContent>
         </Card>
         {commentDisplay?
-        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'#556b2f', top:0, left:0}}> <CommentSection commentSectionPopUp={commentSectionPopUp}  />
+        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'#556b2f', top:0, left:0}}> <CommentSection post={post} commentSectionPopUp={commentSectionPopUp} handleAddComment={handleAddComment} />
          </div>:null}
         </>
     )

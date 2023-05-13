@@ -55,10 +55,20 @@ async function deletePost(postId) {
 // after we come back from the back end
         getPosts() //call on the getPosts function again to return the new array or objects
     
-} catch(err) {
+    } catch(err) {
     console.log(err, 'WE HAD A PROBLEM DELETING THE POST')
+    }
 }
+
+async function handleAddComment(postId, comment) {
+    try {
+        const data = await postApi.addComment(postId, comment);
+        getPosts()
+    } catch(err) {
+        console.log(err, 'THERE WAS A PROBLEM WITH ADDING A COMMENT')
+    }
 }
+
 
     return (
         
@@ -75,7 +85,7 @@ async function deletePost(postId) {
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column style={{ maxWidth: 800 }}>
-                    <PlantPostDisplay posts={posts} deletePost={deletePost}/>
+                    <PlantPostDisplay posts={posts} deletePost={deletePost} handleAddComment={handleAddComment}/>
                 </Grid.Column>
             </Grid.Row>
         </Grid>

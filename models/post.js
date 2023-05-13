@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 
-// const likeSchema = mongoose.Schema({
-//     username: String,
-//     userId: { type: mongoose.Schema.Types.ObjectId }
-// })
-
 const commentSchema = mongoose.Schema( {
+    // user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}, //idk about this. double check
     username: String,
-    userId: { type: mongoose.Schema.Types.ObjectId}, //idk about this. double check
-    comment: {type: String},
+    comment: String,
     created: {type: Date, default: Date.now(), select: false}
 }, {timestamps: true})
 

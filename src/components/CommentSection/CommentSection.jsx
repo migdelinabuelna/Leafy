@@ -1,12 +1,31 @@
-import { Button } from "semantic-ui-react"
+import React from 'react'
+import { Button, Comment, Header, Card } from "semantic-ui-react"
 
-export default function CommentSection({commentSectionPopUp}) {
+export default function CommentSection({post, commentSectionPopUp}) {
     return (
         <>
-         <div > 
-         <h5>COMMENT SECTION - all of our comments will display here</h5> 
+        <Card.Content center>
+        {post.comments.length}
+         
+        
+    <Header as='h3' dividing> COMMENTS </Header>
+
+    <Comment.Group itemsPerRow={1} stackable>
+    {post.comments.map((comment) => {
+
+    return (
+           <Comment>
+                <Comment.Content>
+                    <Comment.Author> {comment.username} </Comment.Author>
+                    <Comment.Text>{comment.comment}</Comment.Text>
+                </Comment.Content>
+            </Comment> 
+        )
+    })}
+
+    </Comment.Group>
+         </Card.Content>
          <Button onClick={commentSectionPopUp}> RETURN </Button>
-         </div>
          </>
     )
 }
