@@ -50,7 +50,7 @@ export default function PlantPostCard({ post, deletePost, handleAddComment }){
         <CardContent><AddCommentForm post={post} handleAddComment={handleAddComment}/></CardContent>
         </Card>
         {commentDisplay?
-        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'#556b2f', top:0, left:0}}> <CommentSection post={post} commentSectionPopUp={commentSectionPopUp} handleAddComment={handleAddComment} />
+        <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'white', top:0, left:0}}> <CommentSection post={post} commentSectionPopUp={commentSectionPopUp} handleAddComment={handleAddComment} />
          </div>:null}
         </>
     )

@@ -1,9 +1,9 @@
 
 # Leafy
 
-Deployment link https://mig-n-plants.onrender.com/login
+Deployment link https://mig-n-plants.onrender.com
 
-##### Things to note
+##### About
 
 
 

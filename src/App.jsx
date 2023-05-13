@@ -39,7 +39,7 @@ return (
   <Routes>
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      {/* <Route path="/*" element={<Navigate to="/login" />} /> */}
+      <Route path="/*" element={<Navigate to="/login" />} />
   </Routes>
 );
 
