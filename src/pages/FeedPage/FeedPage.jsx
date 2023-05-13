@@ -12,7 +12,7 @@ import { Grid } from "semantic-ui-react"
 //this will import all the functions from postApi, and attach to an object call postApi
 import * as postApi from '../../utils/postApi';
 
-export default function FeedPage({handleLogout}){
+export default function FeedPage({ loggedUser, handleLogout}){
 
     const [posts, setPosts] = useState([]); //array of objects (posts)
 
@@ -75,7 +75,7 @@ async function handleAddComment(postId, comment) {
         <Grid centered>
             <Grid.Row>
                 <Grid.Column> 
-                    <PageHeader handleLogout={handleLogout}/>
+                    <PageHeader handleLogout={handleLogout} loggedUser={loggedUser}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>

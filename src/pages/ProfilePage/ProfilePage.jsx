@@ -7,7 +7,7 @@ import PlantPostDisplay from "../../components/PlantPostDisplay/PlantPostDisplay
 // we import this in order to call the getProfile function that makes the api call to the backend 
 import userService from "../../utils/userService"
 
-export default function ProfilePage() {
+export default function ProfilePage( handleLogout, loggedUser) {
 
     const [posts, setPosts] = useState([]);
     const [profileUser, setProfileUser] = useState({});
@@ -31,36 +31,18 @@ export default function ProfilePage() {
 
             } catch(err){
                 console.log('ERROR WITH PROFILE PAGE')
-                // setError('PROFILE DOES NOT EXIST')
+                setError('PROFILE DOES NOT EXIST')
             }
         }
         getProfile(); //we are using in inside the use effect because we wont be using this page anywhere else
     }, [])
 
-    // ///the following can also be implemented on our FeedPage
-    // if (error) {
-    //     return (
-    //         <>
-    //         <PageHeader />
-    //         <h1>{error}</h1> 
-    //         </>
-    //     );
-    // }
-
-    // if (loading) {
-    //     return (
-    //         <>
-    //         <PageHeader />
-    //         <h1></h1>
-    //         </>
-    //     )
-    // }
 
     return (
         <Grid>
             <Grid.Row>
                 <Grid.Column>
-                    <PageHeader />
+                    <PageHeader handleLogout={handleLogout} loggedUser={loggedUser}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>

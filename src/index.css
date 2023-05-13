@@ -1,0 +1,18 @@
+:root {
+
+  background-color: #242424;
+
+}
+
+a {
+  font-weight: 500;
+  color: green;
+  text-decoration: inherit;
+}
+a:hover {
+  color:greenyellow;
+}
+
+body {
+background-image: url('https://images.pexels.com/photos/2748756/pexels-photo-2748756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+}

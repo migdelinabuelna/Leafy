@@ -14,4 +14,6 @@ Deployment link https://mig-n-plants.onrender.com
 
 ##### Improvement plans
 
-- Messanger
+- Swap Tag
+- Delete Comment
+- Edit Profile

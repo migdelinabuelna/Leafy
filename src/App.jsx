@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import "./App.css";
+import "./App.css"; // this is importing css stuff into out page
 
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";

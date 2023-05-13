@@ -26,8 +26,7 @@ export default function PlantPostCard({ post, deletePost, handleAddComment }){
                   src={
                     post.user.photoUrl  // is there is a photo url...
                       ? post.user.photoUrl // we are using that url....
-                      : "https://react.semantic-ui.com/images/wireframe/square-image.png"
-                    //   
+                      : "https://react.semantic-ui.com/images/wireframe/square-image.png" 
                   }
                 />
                 <Link to={`/${post.user.username}`}>
