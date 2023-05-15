@@ -68,7 +68,7 @@ async function createComment(req, res) {
     try{
         console.log(req.body, 'CHECKING ADD COMMENT ERROR')
         const post = await Post.findById(req.params.id)
-        post.comments.push({username: req.user.user, comment: req.body.comment.comment});
+        post.comments.push({username: req.user.username, comment: req.body.comment.comment});
         await post.save()
         res.status(201).json({data: 'added cooment succesfully at controllers'})
 

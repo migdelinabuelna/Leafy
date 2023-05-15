@@ -7,7 +7,7 @@ import PlantPostDisplay from "../../components/PlantPostDisplay/PlantPostDisplay
 // we import this in order to call the getProfile function that makes the api call to the backend 
 import userService from "../../utils/userService"
 
-export default function ProfilePage( handleLogout, loggedUser) {
+export default function ProfilePage({handleLogout, loggedUser, handleAddComment }) {
 
     const [posts, setPosts] = useState([]);
     const [profileUser, setProfileUser] = useState({});
@@ -36,6 +36,15 @@ export default function ProfilePage( handleLogout, loggedUser) {
         getProfile(); //we are using in inside the use effect because we wont be using this page anywhere else
     }, [])
 
+async function handleAddComment(postId, comment) {
+    try {
+        const data = await postApi.addComment(postId, comment);
+        getPosts()
+    } catch(err) {
+        console.log(err, 'THERE WAS A PROBLEM WITH ADDING A COMMENT')
+    }
+}
+
 
     return (
         <Grid>
@@ -51,7 +60,7 @@ export default function ProfilePage( handleLogout, loggedUser) {
              </Grid.Row>
             <Grid.Row centered>
                 <Grid.Column style={{ maxWidth: 800 }}>
-                    <PlantPostDisplay posts={posts} isProfile={true}/>
+                    <PlantPostDisplay posts={posts} isProfile={true} handleAddComment={handleAddComment}/>
                 </Grid.Column>
             </Grid.Row>
         </Grid>     

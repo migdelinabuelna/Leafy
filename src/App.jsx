@@ -30,7 +30,7 @@ if (user) {
       <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout}/>} />
       <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path="/:username" element={<ProfilePage />} />
+      <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout}/>} />
     </Routes>
   );
 }
