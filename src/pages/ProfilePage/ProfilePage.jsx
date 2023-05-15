@@ -11,8 +11,7 @@ export default function ProfilePage( handleLogout, loggedUser) {
 
     const [posts, setPosts] = useState([]);
     const [profileUser, setProfileUser] = useState({});
-    // const [loading, setLoading] = useState(true); //the page is loading when the component loads
-    // const [error, setError] = useState("");
+
 
 //username comes from whatever the params name is on the route /:userame
     const { username } = useParams();
@@ -40,13 +39,13 @@ export default function ProfilePage( handleLogout, loggedUser) {
 
     return (
         <Grid>
-            <Grid.Row>
+            <Grid.Row centered>
                 <Grid.Column>
                     <PageHeader handleLogout={handleLogout} loggedUser={loggedUser}/>
                 </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-                <Grid.Column>
+            <Grid.Row centered>
+                <Grid.Column centered style={{ maxWidth: 600 }}>
                     <ProfileBio profileUser={profileUser}/>
                 </Grid.Column>
              </Grid.Row>

@@ -1,6 +1,8 @@
-:root {
+body {
   background-image: url('https://images.pexels.com/photos/2748756/pexels-photo-2748756.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
   background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
 }
 
 a {
@@ -13,6 +15,3 @@ a:hover {
   color:greenyellow;
 }
 
-body {
-  background-color: rgb(220,223,217, .1);
-}
