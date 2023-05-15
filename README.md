@@ -13,7 +13,7 @@ Leafy is a social media application designed exclusively for plant enthusiasts, 
 ![Profile Page](https://i.imgur.com/y1dVEhe.png)
 
 ## PLANT POST DISPLAY
-![Plant Post Display](hhttps://i.imgur.com/SuSAXzl.png)
+![Plant Post Display](https://i.imgur.com/SuSAXzl.png)
 
 ## COMMENT SECTION POP-UP
 ![Comment Section Popup](https://i.imgur.com/MVq1t7i.png)
