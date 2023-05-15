@@ -43,7 +43,7 @@ export default function PlantPostCard({ post, deletePost, handleAddComment }){
             <Card.Description>{post.caption}</Card.Description>
           </Card.Content>
           <Card.Content onClick={commentSectionPopUp}>
-            <Card.Description>COMMENT SECTION</Card.Description>
+            <Card.Description><a>COMMENT SECTION</a></Card.Description>
           </Card.Content>
           <CardContent>
             <AddCommentForm post={post} handleAddComment={handleAddComment}/>
