@@ -17,7 +17,7 @@ export default function AddCommentForm({handleAddComment, post}) {
   }
 
   return (
-  <Form onSubmit={handleSubmit}>
+  <Form onSubmit={handleSubmit} >
     <Form.Field >
       {/* <label>COMMENT SECTION</label> */}
       <Input placeholder='ADD COMMENT' onChange={handleChange}/>
