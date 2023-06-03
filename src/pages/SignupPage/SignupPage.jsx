@@ -8,25 +8,20 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage'
 import { useNavigate } from "react-router-dom"; //htis is a hook that allows you to navigate to a different route
 
 export default function Signup({handleSignUpOrLogin}) {
-
-const navigate = useNavigate(); //this is a function that affects the route to change to 
-
-//set up our state
-const [state, setState] = useState({
+  const navigate = useNavigate(); //this is a function that affects the route to change to 
+  const [state, setState] = useState({
     username: '',
     email: '',
     password: '',
     confirmpassword: '',
     bio: '',
     faveplants: ''
-})
+  })
 
-const [ profileImageFile, setProfileImageFile] = useState('')
-
-const [error, setError] = useState('') //this is going to be used in case we have an error
-
-//e is the event object. it will refferrence whatever input is typed in our form
-function handleChange(e) {
+  const [ profileImageFile, setProfileImageFile] = useState('')
+  const [error, setError] = useState('') //this is going to be used in case we have an error
+  //e is the event object. it will refferrence whatever input is typed in our form
+  function handleChange(e) {
     setState({
         ...state, 
         [e.target.name]: e.target.value
@@ -34,22 +29,20 @@ function handleChange(e) {
         //that name property "username" happens to match the key name in our state above
         //we always want the property name in our for to match the key name in our state so we can use this syntax
     })
-}
+  }
 
-//file will need a different piece of state
-function handleFileInput(e) {
+  //file will need a different piece of state
+  function handleFileInput(e) {
     //[0] this takes the first file the user uploads and sets it in state
     //we could look at this by console logging
     console.log(e.target.files)
     setProfileImageFile(e.target.files[0]);
-}
+  }
 
-async function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
     //we have to turn our data into formData if we are sending over a photo or file
     const formData = new FormData();
-
     formData.append('photo', profileImageFile); 
     // formData.append('username', state.username);
     // formData.append('email', state.email);
@@ -58,32 +51,31 @@ async function handleSubmit(e) {
     // formData.append('bio', state.bio);
     // FormData.append('favplants', state.faveplants);
 
-//A shorter way to do the above is to use a for in loop
-//it allows us to loop over the state object and apply the field names and values
+    //A shorter way to do the above is to use a for in loop
+    //it allows us to loop over the state object and apply the field names and values
     for (let fieldName in state) {
         formData.append(fieldName, state[fieldName]) 
-    }
-
-// console.log(formData.forEach((item) => console.log(item))); //to check formData in console
+    } 
+    // console.log(formData.forEach((item) => console.log(item))); //to check formData in console
 
     try { 
         await userService.signup(formData);
         handleSignUpOrLogin();
         navigate('/'); //this will navigate us to our home page
-} catch(err) {
-    console.log(err.message, 'there was an error signing up')
-    setError('Check your terminal for any errors')
-}
+    } catch(err) {
+      console.log(err.message, 'there was an error signing up')
+      setError('Check your terminal for any errors')
+    }
     
-}
+  }
 
-    return (
-  <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-  <Grid.Column style={{ maxWidth: 450 }}>
-    <Header as='h2' color='brown' textAlign='center'>
-      <Image src='https://i.imgur.com/jV50WYl_d.jpg?maxwidth=520&shape=thumb&fidelity=high' /> Sign Up
-    </Header>
-    <Form autoComplete="off" onSubmit={handleSubmit}>
+  return (
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as='h2' color='brown' textAlign='center'>
+          <Image src='https://i.imgur.com/jV50WYl_d.jpg?maxwidth=520&shape=thumb&fidelity=high' /> Sign Up
+        </Header>
+        <Form autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input
               name="username"
@@ -129,7 +121,7 @@ async function handleSubmit(e) {
                 placeholder="What are your to three plants?"
                 onChange={handleChange}
             />
-             <Form.Field>
+            <Form.Field>
               <Form.Input
                 type="file"
                 name="photo"
@@ -141,11 +133,11 @@ async function handleSubmit(e) {
               Signup
             </Button>
           </Segment>
-          {error ? <ErrorMessage error={error} /> : null}
+            {error ? <ErrorMessage error={error} /> : null}
         </Form>
-  </Grid.Column>
-</Grid>
-    )
+      </Grid.Column>
+    </Grid>
+  )
 }
 
 

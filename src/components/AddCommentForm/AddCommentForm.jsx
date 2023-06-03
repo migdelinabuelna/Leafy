@@ -17,12 +17,12 @@ export default function AddCommentForm({handleAddComment, post}) {
   }
 
   return (
-  <Form onSubmit={handleSubmit} >
-    <Form.Field >
-      <Input placeholder='ADD COMMENT' onChange={handleChange}/>
-      <Button type='submit'>Submit</Button>
-    </Form.Field>
-  </Form>
-)
+    <Form onSubmit={handleSubmit} >
+      <Form.Field>
+        <Input placeholder='ADD COMMENT' onChange={handleChange}/>
+        <Button type='submit'>Submit</Button>
+      </Form.Field>
+    </Form>
+  )
 }
 

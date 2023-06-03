@@ -8,15 +8,11 @@ import PlantPostDisplay from "../../components/PlantPostDisplay/PlantPostDisplay
 import userService from "../../utils/userService"
 
 export default function ProfilePage({handleLogout, loggedUser, handleAddComment }) {
-
     const [posts, setPosts] = useState([]);
     const [profileUser, setProfileUser] = useState({});
-
-
-//username comes from whatever the params name is on the route /:userame
+    //username comes from whatever the params name is on the route /:userame
     const { username } = useParams();
     console.log(username);
-
     //we have to have the use effect for when our page loads 
     useEffect(() => {
         async function getProfile() {
@@ -36,15 +32,14 @@ export default function ProfilePage({handleLogout, loggedUser, handleAddComment 
         getProfile(); //we are using in inside the use effect because we wont be using this page anywhere else
     }, [])
 
-async function handleAddComment(postId, comment) {
-    try {
-        const data = await postApi.addComment(postId, comment);
-        getPosts()
-    } catch(err) {
-        console.log(err, 'THERE WAS A PROBLEM WITH ADDING A COMMENT')
+    async function handleAddComment(postId, comment) {
+        try {
+            const data = await postApi.addComment(postId, comment);
+            getPosts()
+        } catch(err) {
+            console.log(err, 'THERE WAS A PROBLEM WITH ADDING A COMMENT')
+        }
     }
-}
-
 
     return (
         <Grid>

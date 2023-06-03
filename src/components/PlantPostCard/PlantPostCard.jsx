@@ -5,18 +5,14 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import AddCommentForm from "../AddCommentForm/AddCommentForm"
 
-
 export default function PlantPostCard({ post, deletePost, handleAddComment }){
- 
     const [commentDisplay, setCommentDisplay] = useState (false)//the boolean goes in here without the strings cause otherwise it is just a string
-
     function commentSectionPopUp(){
         setCommentDisplay(!commentDisplay) //! means we want the oppostite 
     }
 
-
     return ( 
-         <>
+        <>
         <Card raised>
           <Card.Content textAlign="center">
             <Card.Header>
@@ -52,7 +48,6 @@ export default function PlantPostCard({ post, deletePost, handleAddComment }){
         {commentDisplay?
         <div style={{position: 'absolute', zIndex:3, width:'70vw', height:'100vh', backgroundColor:'white', top:0, left:0}}> <CommentSection post={post} commentSectionPopUp={commentSectionPopUp} handleAddComment={handleAddComment} />
          </div>:null}
-         
         </>
     )
 }

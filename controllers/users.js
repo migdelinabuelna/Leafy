@@ -32,7 +32,6 @@ async function signup(req, res) {
       res.status(400).json({error: 'USER ALREADY EXISTS'})
     }
  
- 
 const user = new User({...req.body, photoUrl: data.Location}); //data.Location is the url of our image on AWS
 try {
   await user.save();
@@ -86,11 +85,7 @@ async function profilePage( req, res) {
   }
 }
 
-
-
-
 /*----- Helper Functions -----*/
-
 function createJWT(user) {
   return jwt.sign(
     {user}, // data payload

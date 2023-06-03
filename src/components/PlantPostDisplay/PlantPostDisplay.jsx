@@ -2,9 +2,6 @@
 import PlantPostCard from "../PlantPostCard/PlantPostCard"
 import { Card} from "semantic-ui-react";
 
-
-
-
 export default function PlantPostDisplay({posts, deletePost, handleAddComment, isProfile}) {
     return (
         <Card.Group itemsPerRow={4} stackable>

@@ -9,14 +9,12 @@ require("./config/database");
 // Require controllers here
 
 const app = express();
-
 app.set('view engine', 'ejs');//for deployment
 
 // add in when the app is ready to be deployed
 // app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(logger("dev"));
 app.use(express.json()); // makes http requests available on req.body
-
 
 // Configure the auth middleware
 // This decodes the jwt token, and assigns
@@ -34,7 +32,6 @@ app.use(express.static(path.join(__dirname, "dist")));
 app.get('/*', function(req, res) {
   res.render(path.join(__dirname, 'dist', 'index.ejs'), {manifest});
 });
-
 
 const { PORT = 8000 } = process.env;
 app.listen(PORT, () => {

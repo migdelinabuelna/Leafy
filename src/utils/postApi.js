@@ -2,7 +2,6 @@
 import tokenService from "./tokenService"
 const BASE_URL = '/api/posts/'; /// I need an explanation as to how this connects with server.js and our backend routes
 
-//request to create a POST
 export function create(data){
     console.log(data);
     return fetch(BASE_URL, {
@@ -29,9 +28,6 @@ export function getAll() {
     })
     .then(res => res.json()); //this is returning the json object that was given to us by the 
 }
-
-
-//we will need to have a function for the delete as well!
 
 export function deletePost(postId) {
     return fetch(BASE_URL + postId, { //technically /api/posts/postId

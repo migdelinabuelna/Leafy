@@ -35,7 +35,7 @@ export default function LoginPage(props) {
     try {
       // Making the POST request to /api/users/login on our express server
       await userService.login(state); //await ends after we recieve the token from the server, and store in localstorage... so after the user logs in and token is stored in local storage 
-//then we call the handleSignUpOrLogin
+      //then we call the handleSignUpOrLogin
       props.handleSignUpOrLogin(); // We call handleSignUpOrLogin, to decode that token from localstorage and store in our App component's state
       navigate("/");     // Route to wherever you want!
     } catch (err) {

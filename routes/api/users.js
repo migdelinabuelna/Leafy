@@ -6,7 +6,6 @@ const usersCtrl = require("../../controllers/users");
 const multer = require('multer');
 const upload = multer();
 
-/*---------- Public Routes ----------*/
 //multer then is added to the route that will handle our file/photo upload
 //'photo' comes from the key on the form-data object we created on the signup component page 
 router.post("/signup", upload.single('photo'), usersCtrl.signup);
@@ -16,13 +15,4 @@ router.post("/login", usersCtrl.login);
 ///api/users/username
 router.get('/:username', usersCtrl.profile)
 
-/*---------- Protected Routes ----------*/
-
 module.exports = router;
-
-
-
-/*---------- Protected Routes ----------*/
-
-
-
